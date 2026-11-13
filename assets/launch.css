@@ -1,0 +1,104 @@
+.splash{
+  --disp:"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
+  --font:"Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;
+  --tx:#e9eefc;--tx3:#8e9bc2;--accent:#7f8cf8;
+  --hair2:rgba(150,175,255,.22);
+}
+.stage-wrap .splash{margin:0;width:100%;padding:12px 8px 10px}
+.stage-wrap .s72{font-size:clamp(26px,5vw,42px)}
+/* Opening scene: Minztobia round 7, approved 13 Nov 2026.
+   The speeder motion is redrawn after the Uiverse.io loader by anand_4957.
+   The beam glow keyframe is named prglow so it does not replace the desk scene's glow. */
+.wm .g{background:linear-gradient(100deg,#9d8ff5 0%,#5b8cff 45%,#41e8ff 80%,#2bd6b0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.splash .wm{font-family:var(--disp);line-height:1;white-space:nowrap;font-weight:650;letter-spacing:-.03em;color:#e9eefc}
+.splash .wm .g{font-weight:330;letter-spacing:-.01em}
+.splash .dl{position:relative;display:inline-block}
+.tt.a{color:#7f8cf8}
+.tt.b{color:#41e8ff}
+.tt{position:absolute;left:50%;top:.2em;transform:translateX(-50%);overflow:visible}
+.wm svg.tt{width:.13em;height:.13em;filter:none;flex:none;background:none;border-radius:0}
+.wm .w svg.tt{width:.17em;height:.17em;top:.15em}
+.splash{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--hair2);background:radial-gradient(70% 70% at 45% 45%,#101a44 0%,#060a1d 58%,#03050d 100%);
+ padding:44px 12px 40px;display:flex;flex-direction:column;align-items:center;margin:14px 0}
+.splash svg.pr{width:100%;max-width:960px;height:auto;overflow:visible}
+.splash .s72{font-size:clamp(40px,8vw,72px);margin-top:-4px}
+.splash .wm{color:#e9eefc;animation:wm 1.1s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--nm) - var(--T, 0ms))}
+@keyframes wm{from{opacity:0;transform:translateY(10px);filter:blur(4px)}}
+.splash .sub{font:14px var(--font);color:var(--tx3);margin-top:10px;animation:wm 1s both;animation-delay:calc(var(--nm) + .5s)}
+.splash .tt.hop{animation:drop 1s cubic-bezier(.2,.9,.3,1) both}
+.splash .tt.a.hop{animation-delay:calc(var(--nm) + .5s - var(--T, 0ms))}
+.splash .tt.b.hop{animation-delay:calc(var(--nm) + .65s - var(--T, 0ms))}
+@keyframes drop{0%{opacity:0;transform:translate(-50%,-.7em)}100%{opacity:1;transform:translate(-50%,0)}}
+svg.pr *{--D:calc(var(--d,0ms) - var(--T,0ms))}
+/* act 1: the speeder races in, holds while it loads, then charges the triangle */
+svg.pr .car{animation:car 2.5s linear both;animation-delay:calc(0ms - var(--T,0ms))}
+@keyframes car{0%{transform:translateX(-200px);animation-timing-function:cubic-bezier(.15,.7,.3,1)}
+ 30%{transform:translateX(-62px);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+ 70%{transform:translateX(-50px);animation-timing-function:cubic-bezier(.6,0,.9,.6)}
+ 100%{transform:none}}
+svg.pr .jit{animation:speeder .4s linear 6;animation-delay:calc(0ms - var(--T,0ms))}
+@keyframes speeder{0%{transform:translate(1px,.5px) rotate(0)}10%{transform:translate(-.5px,-1.5px) rotate(-.6deg)}20%{transform:translate(-1px,0) rotate(.6deg)}
+ 30%{transform:translate(.5px,1px) rotate(0)}40%{transform:translate(.5px,-.5px) rotate(.6deg)}50%{transform:translate(-.5px,1.5px) rotate(-.6deg)}
+ 60%{transform:translate(-.5px,.5px) rotate(0)}70%{transform:translate(1.5px,.5px) rotate(-.6deg)}80%{transform:translate(-1px,-.5px) rotate(.6deg)}
+ 90%{transform:translate(1px,.5px) rotate(0)}100%{transform:translate(.5px,-1px) rotate(-.6deg)}}
+svg.pr .jit{transform-box:fill-box;transform-origin:50% 50%}
+/* the charge: it leans back to wind up, then tips forward on its nose and rotates into the triangle, stretched by speed; it straightens as it pours in */
+svg.pr .rot{transform-box:view-box;animation:rot 3s linear both;animation-delay:calc(0ms - var(--T,0ms))}
+@keyframes rot{0%,56%{transform:none;animation-timing-function:cubic-bezier(.4,0,.6,1)}
+ 63%{transform:rotate(-8deg) scale(.97,1.03);animation-timing-function:cubic-bezier(.55,0,.3,1)}
+ 83.3%{transform:rotate(17deg) scale(1.12,.93);animation-timing-function:cubic-bezier(.3,0,.25,1)}
+ 100%{transform:none}}
+svg.pr .bst{opacity:0;animation:bst .75s cubic-bezier(.3,0,.3,1) both;animation-delay:var(--D);transform-box:fill-box;transform-origin:100% 50%}
+@keyframes bst{0%{opacity:0;transform:scaleX(.2)}55%{opacity:.95;transform:scaleX(1.3)}100%{opacity:0;transform:scaleX(1.6) translateX(-20px)}}
+svg.pr .fz{opacity:0;animation:fz var(--dur) linear var(--n);animation-delay:calc(0ms - var(--T,0ms))}
+@keyframes fz{0%{opacity:.9;transform:none}100%{opacity:0;transform:translateX(-70px)}}
+svg.pr .lf{opacity:0;animation:lf var(--dur) linear var(--n);animation-delay:var(--D)}
+@keyframes lf{0%{opacity:.8;transform:none}100%{opacity:0;transform:translateX(-560px)}}
+svg.pr .gw{animation:breathe 4.8s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.7}}
+svg.pr .kk,svg.pr .spk,svg.pr .eyes{animation:gone .3s ease-in both;animation-delay:calc(2550ms - var(--T,0ms))}
+svg.pr .eyes{animation-delay:calc(2850ms - var(--T,0ms))}
+svg.pr .gw{animation:breathe 4.8s ease-in-out infinite,gone .6s both;animation-delay:0s,calc(2900ms - var(--T,0ms))}
+@keyframes gone{to{opacity:0}}
+/* act 2: the tiles pour into the triangle, bend, and leave from the other face */
+svg.pr .th{animation:th var(--thru,620ms) linear both;animation-delay:var(--D)}
+@keyframes th{0%{opacity:1;transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}
+ 42%{opacity:1;transform:translate(var(--ix),var(--iy)) scale(.45);animation-timing-function:linear}
+ 78%{opacity:.95;transform:translate(var(--ox),var(--oy)) scale(.38)}100%{opacity:0;transform:translate(var(--ox),var(--oy)) scale(.2)}}
+svg.pr .te{stroke-dasharray:var(--len) 999;animation:draw .9s cubic-bezier(.5,0,.2,1) both,edge 3.6s ease-in-out infinite;animation-delay:calc(150ms - var(--T,0ms)),calc(4600ms - var(--T,0ms))}
+@keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
+@keyframes edge{50%{stroke-opacity:.6}}
+svg.pr .tb{animation:hit 1.6s ease-out both;animation-delay:calc(2500ms - var(--T,0ms))}
+@keyframes hit{0%{stroke-opacity:.18}12%{stroke-opacity:.8;stroke-width:9}100%{stroke-opacity:.22}}
+svg.pr .tri{animation:fadein .6s ease-out both;animation-delay:calc(100ms - var(--T,0ms))}
+@keyframes fadein{from{opacity:0}}
+svg.pr .rf{stroke-dasharray:var(--len) 999;animation:draw .35s ease-out both,rfdim 1.4s ease-in-out both;animation-delay:calc(2620ms - var(--T,0ms)),calc(3900ms - var(--T,0ms))}
+@keyframes rfdim{to{stroke-opacity:.35;stroke-width:1.2}}
+svg.pr .fi{animation:flare 1.1s ease-out both;animation-delay:calc(2480ms - var(--T,0ms));transform-box:fill-box;transform-origin:50% 50%}
+svg.pr .fo{animation:flare2 2.2s ease-out both;animation-delay:calc(2800ms - var(--T,0ms));transform-box:fill-box;transform-origin:50% 50%}
+@keyframes flare{0%{opacity:0;transform:scale(.3)}22%{opacity:1;transform:scale(1.5)}100%{opacity:.3;transform:none}}
+@keyframes flare2{0%{opacity:0;transform:scale(.3)}20%{opacity:1;transform:scale(1.3)}100%{opacity:.55;transform:none}}
+/* act 3: each body shoots out down its beam */
+svg.pr .bm{stroke-dasharray:var(--len) 999;animation:draw .64s cubic-bezier(.12,.75,.2,1) both,prglow 3.2s ease-in-out infinite;animation-delay:var(--D),calc(var(--d) + 1s + var(--p) - var(--T,0ms))}
+@keyframes prglow{0%,100%{opacity:.8}50%{opacity:.45}}
+svg.pr .go{animation:go .64s cubic-bezier(.12,.75,.2,1) both;animation-delay:var(--D)}
+@keyframes go{from{transform:none}to{transform:translate(var(--tx),var(--ty))}}
+svg.pr .bd{animation:bd .64s cubic-bezier(.2,.9,.3,1) both;animation-delay:var(--D);transform-box:fill-box;transform-origin:50% 50%}
+@keyframes bd{0%{opacity:0;transform:scale(.25)}25%{opacity:1}}
+svg.pr .tr{opacity:0;animation:tr .75s ease-out both;animation-delay:var(--D);transform-box:fill-box;transform-origin:100% 50%}
+@keyframes tr{0%{opacity:0;transform:scaleX(.2)}20%{opacity:.95;transform:scaleX(1.25)}100%{opacity:0;transform:scaleX(.1)}}
+svg.pr .ag{animation:ag .5s ease-out both;animation-delay:var(--D);transform-box:fill-box;transform-origin:50% 50%}
+@keyframes ag{from{opacity:0;transform:scale(.6)}}
+svg.pr .ping{opacity:0;animation:ping 1s ease-out both;animation-delay:var(--D);transform-box:fill-box;transform-origin:50% 50%}
+@keyframes ping{0%{opacity:0;transform:scale(.6)}12%{opacity:.9}100%{opacity:0;transform:scale(1.9)}}
+svg.pr .bob{animation:bob 2.6s ease-in-out infinite;animation-delay:var(--D)}
+@keyframes bob{50%{transform:translateY(-1.6px)}}
+/* act 4: the one inside, and the light that keeps flowing to the crew */
+svg.pr .gh{animation:gh 1.2s cubic-bezier(.2,.8,.2,1) both,ghb 4s ease-in-out infinite;animation-delay:var(--D),calc(var(--d) + 1.2s - var(--T,0ms));transform-box:fill-box;transform-origin:50% 50%}
+@keyframes gh{from{opacity:0;transform:scale(.5)}}
+@keyframes ghb{50%{transform:translateY(-1.5px)}}
+svg.pr .pl{opacity:0;animation:pl 2.8s ease-in infinite;animation-delay:var(--D)}
+@keyframes pl{0%{opacity:0;transform:none}10%{opacity:1}55%{opacity:.9;transform:translate(var(--tx),var(--ty))}60%,100%{opacity:0;transform:translate(var(--tx),var(--ty))}}
+svg.pr.still *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){svg.pr *,.splash .wm,.splash .sub,.splash .tt.hop{animation:none!important}svg.pr .car,svg.pr .th,svg.pr .lf,svg.pr .fz,svg.pr .tr{display:none}svg.pr .go{transform:translate(var(--tx),var(--ty))}}
+#launch.off svg.pr *{animation-play-state:paused!important}

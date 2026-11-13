@@ -125,6 +125,7 @@
   cursor: pointer;
 }
 .v-rest .tobia { width: 32px; height: 32px; flex: none; position: relative; }
+#demo-island .mn-tag { display: none; }
 .v-rest .tobia .mn { position: absolute; left: 0; top: 0; transform: scale(.23); transform-origin: 0 0; margin: 0; }
 .v-rest .txt {
   flex: 1;
@@ -278,6 +279,55 @@
 .agent-slot:hover { background: rgba(255, 255, 255, .04); }
 .agent-slot:focus-visible { outline: 2px solid #5aa8ff; outline-offset: 2px; }
 .agent-slot .mn { --s: .68; }
+
+/* Chat is its own view. It replaces the frame; it does not float over it. */
+#desk-stage[data-view="chat"] .dframe,
+#desk-stage[data-view="chat"] .hud-strip { display: none; }
+.dchat { display: none; position: relative; z-index: 2; flex: 1; min-height: 0; flex-direction: column; gap: 10px; }
+#desk-stage[data-view="chat"] .dchat { display: flex; }
+.dchat header {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+  font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3);
+}
+.dchat header b { color: var(--ink); font-weight: 650; letter-spacing: .12em; }
+.dmsgs { flex: 1; min-height: 72px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; }
+.dmsgs .me {
+  align-self: flex-end; max-width: 92%;
+  padding: 10px 12px; border-radius: 14px 14px 4px 14px;
+  background: rgba(90, 140, 255, .18); border: 1px solid rgba(150, 175, 255, .28);
+  color: #e9eefc; font: 14px/1.35 var(--font);
+}
+.dmsgs .me b { color: #9ec0ff; font-weight: 650; }
+.dcomp { display: flex; flex-direction: column; gap: 8px; }
+.mbub { display: flex; align-items: center; gap: 8px; align-self: flex-start; color: var(--ink2); font: 12px/1.2 var(--font); }
+.mb-face {
+  width: 36px; height: 36px; border-radius: 50%; overflow: hidden; display: grid; place-items: center;
+  background: rgba(255, 255, 255, .04); box-shadow: inset 0 0 0 1px rgba(150, 175, 255, .35);
+}
+.mb-face .mn { --s: .26; position: relative; }
+.mb-face svg { width: 36px; height: 36px; display: block; }
+.mb-face .mn-tag, .dchat .mn-tag { display: none; }
+.mb-nm { color: #d7e4ff; font-weight: 650; }
+.drow { display: flex; align-items: center; gap: 8px; }
+.mline {
+  flex: 1; min-width: 0; min-height: 44px; display: block; padding: 0 12px; border-radius: 12px;
+  background: rgba(4, 8, 20, .72); border: 1px solid rgba(150, 175, 255, .2);
+  color: #e9eefc; font: 14px/44px var(--font);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mline .at { color: #9ec0ff; font-weight: 650; }
+.mline .caret {
+  display: inline-block; width: 1px; height: 16px; margin-left: 1px;
+  vertical-align: -2px; background: #8eb6ff;
+  animation: mcaret 1s steps(1) infinite;
+}
+.pass {
+  flex: none; min-width: 72px; min-height: 44px; padding: 0 16px; border-radius: 12px;
+  border: 0; background: #5b8cff; color: #04070f; font: 650 14px/1 var(--font); cursor: pointer;
+}
+.pass.on { transform: scale(.96); filter: brightness(1.12); }
+@keyframes mcaret { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .mline .caret { animation: none; } .pass.on { transform: none; } }
 
 /* When #desk-stage content width <= 530px (phones AND narrow 2-column laptops such as 961-1060px), wrap cleanly 2x2 */
 @container desk (max-width: 530px) {
