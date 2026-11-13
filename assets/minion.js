@@ -2,7 +2,7 @@
 // Keeps Tobia (pearl glass orb) and the 4 engine crew characters (Claude, ChatGPT, Grok, OpenCode) with zero external imports.
 
 export const DEFS = {
-  tobia:    { id: "tobia",    name: "Tobia",    role: "Host of the island",      c2: "#e2c493", world: "pearl" },
+  tobia:    { id: "tobia",    name: "Minztobia", role: "Host of the island",      c2: "#e2c493", world: "pearl" },
   claude:   { id: "claude",   name: "Claude",   role: "Thinks things through",   c2: "#e07a4f", world: "cloud" },
   codex:    { id: "codex",    name: "ChatGPT",  role: "Builds and fixes things", c2: "#4d9bff", world: "galaxy" },
   grok:     { id: "grok",     name: "Grok",     role: "Quick, curious, direct",  c2: "#ffb547", world: "hole" },
@@ -346,7 +346,7 @@ export function createMinion(def, { scale = 1, mood = "idle", tier = "balanced" 
   el.dataset.id = d.id;
   el.dataset.mood = mood;
   if (SP && tier) el.dataset.tier = tier;
-  el.style.setProperty("--s", scale);
+  if (scale !== null && scale !== undefined) el.style.setProperty("--s", scale);
   el.style.setProperty("--c2", d.c2);
   let h = 0;
   for (const ch of d.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;

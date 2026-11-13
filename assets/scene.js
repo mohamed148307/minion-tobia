@@ -1,4 +1,4 @@
-// Living scene controller for the Minion Tobia public download page.
+// Living scene controller for the Minztobia public download page.
 // Drives one clean story loop inside a site-plan Frame:
 // idle -> working -> asking permission in Tobia's Island -> approved -> done (shockwave & sparks) -> idle.
 
@@ -26,7 +26,7 @@ export function initScene(mount) {
     <div id="demo-island" data-state="rest" data-mood="idle">
       <section class="v-rest">
         <div class="tobia"></div>
-        <div class="txt"><b>Tobia</b> · <span id="isl-status">Desk crew ready</span></div>
+        <div class="txt"><b>Minztobia</b> · <span id="isl-status">Desk crew ready</span></div>
         <div class="pips"></div>
       </section>
       <section class="v-card" aria-label="Permission request">
@@ -91,7 +91,7 @@ export function initScene(mount) {
     slot.type = "button";
     slot.className = "agent-slot";
     slot.setAttribute("aria-label", `Run demo task with ${def.name}`);
-    const el = createMinion(def, { scale: 1, mood: "idle", tier: cfg.tier });
+    const el = createMinion(def, { scale: null, mood: "idle", tier: cfg.tier });
     slot.appendChild(el);
     grid.appendChild(slot);
     attachAura(el, cfg.kind, 2.25, def.tint ? { tint: def.tint } : {});
@@ -222,7 +222,7 @@ export function initScene(mount) {
       islSub.textContent = "Nothing runs without your confirmation";
       island.dataset.mood = "asking";
       island.dataset.state = "ask";
-      syncHud(a, 2, "NEEDS YOU", "Waiting in Tobia's Island", "#ffc24a", false);
+      syncHud(a, 2, "NEEDS YOU", "Waiting in Minztobia's Island", "#ffc24a", false);
 
       schedule(() => {
         if (stagePhase === "asking") finishStory(true);

@@ -18,6 +18,8 @@
   background: radial-gradient(120% 90% at 50% 110%, #0d2a78 0%, #08153f 45%, #040a1d 100%);
   box-shadow: 0 24px 70px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .07);
   min-height: 492px;
+  container-type: inline-size;
+  container-name: desk;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -177,22 +179,21 @@
 .v-card .acts { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
 .isl-btn {
   min-height: 44px;
-  padding: 0 16px;
-  border-radius: 999px;
+  padding: 0 18px;
+  border-radius: 10px;
   font-size: 13px;
-  font-weight: 650;
-  border: 1px solid rgba(255, 255, 255, .16);
-  background: rgba(255, 255, 255, .06);
-  color: var(--ink);
+  font-weight: 600;
+  border: 1px solid transparent;
+  background: none;
+  color: var(--ink2);
   cursor: pointer;
-  transition: transform .15s, background .15s, border-color .15s;
+  transition: background .15s, color .15s, filter .15s;
 }
-.isl-btn:hover { background: rgba(255, 255, 255, .14); transform: translateY(-1px); }
-.isl-btn:focus-visible { outline: 2px solid #5aa8ff; outline-offset: 2px; }
-.isl-btn.go { background: #5ee6a8; color: #05261a; border-color: transparent; }
-.isl-btn.go:hover { background: #7bf0bc; }
-.isl-btn.no { color: #ff9aa2; border-color: rgba(255, 107, 114, .4); }
-.isl-btn.no:hover { background: rgba(255, 107, 114, .14); }
+.isl-btn:focus-visible { outline: 2px solid #5b8cff; outline-offset: 2px; }
+.isl-btn.go { background: #5b8cff; color: #04070f; border-color: transparent; }
+.isl-btn.go:hover { filter: brightness(1.1); }
+.isl-btn.no { background: none; border-color: transparent; color: var(--ink2); padding: 0 12px; }
+.isl-btn.no:hover { color: var(--ink); background: none; }
 
 /* ---- Site-plan Frame (web/frames.css) ---- */
 .dframe {
@@ -276,7 +277,18 @@
 }
 .agent-slot:hover { background: rgba(255, 255, 255, .04); }
 .agent-slot:focus-visible { outline: 2px solid #5aa8ff; outline-offset: 2px; }
-.agent-slot .mn { --s: .66; }
+.agent-slot .mn { --s: .68; }
+
+/* When #desk-stage content width <= 530px (phones AND narrow 2-column laptops such as 961-1060px), wrap cleanly 2x2 */
+@container desk (max-width: 530px) {
+  .dframe { padding: 42px 10px 18px; }
+  .crew-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 12px;
+    padding: 18px 8px 12px;
+  }
+  .agent-slot .mn { --s: .64; }
+}
 
 @media (max-width: 620px) {
   #desk-stage { min-height: 0; padding: 66px 10px 12px; }
