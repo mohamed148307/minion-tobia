@@ -156,7 +156,26 @@ export function initScene(mount) {
   const mfig = mount.querySelector("#demo-mfig");
   const mname = mount.querySelector("#demo-mname");
   let activeId = "claude";
+  let startedOnce = false;
+  const crewTabs = Array.from(document.querySelectorAll("[data-crew-pick]"));
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+  function syncTabs() {
+    for (const tab of crewTabs) {
+      const on = tab.dataset.crewPick === activeId;
+      tab.classList.toggle("is-active", on);
+      tab.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+  }
+
+  for (const tab of crewTabs) {
+    tab.addEventListener("click", () => {
+      const id = tab.dataset.crewPick;
+      if (!id || !agents.has(id)) return;
+      startedOnce = true;
+      runAgentStory(id);
+    });
+  }
 
   function paintLine(agent, typed) {
     const at = "@" + agent.def.name;
@@ -225,6 +244,7 @@ export function initScene(mount) {
   function setStaticShowcase() {
     clearTimeout(timer);
     activeId = "claude";
+    syncTabs();
     const claude = agents.get("claude");
     const codex = agents.get("codex");
     clearMoods();
@@ -269,6 +289,7 @@ export function initScene(mount) {
   function runAgentStory(id) {
     clearTimeout(timer);
     activeId = id;
+    syncTabs();
     const a = agents.get(id);
     if (!a) return;
     if (reducedMotion.matches) {
@@ -384,17 +405,22 @@ export function initScene(mount) {
     if (paused) {
       clearTimeout(timer);
       if (reducedMotion.matches) setStaticShowcase();
-    } else if (wasPaused && (stagePhase === "idle" || stagePhase === "mentioning")) {
+    } else if (!startedOnce || (wasPaused && (stagePhase === "idle" || stagePhase === "mentioning"))) {
+      startedOnce = true;
       runAgentStory(activeId);
     }
     wasPaused = paused;
   }
+
+  const r0 = mount.getBoundingClientRect();
+  inView = r0.bottom > 0 && r0.top < innerHeight;
 
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
       inView = !!entries[0]?.isIntersecting;
       updateRunningState();
       if (inView && !reducedMotion.matches && stagePhase !== "mentioning" && stagePhase !== "asking" && stagePhase !== "finishing") {
+        startedOnce = true;
         runAgentStory(activeId);
       }
     }, { threshold: 0.08 });
@@ -404,9 +430,15 @@ export function initScene(mount) {
   document.addEventListener("visibilitychange", updateRunningState);
   reducedMotion.addEventListener("change", updateRunningState);
 
+  syncTabs();
   if (reducedMotion.matches) {
     setStaticShowcase();
-  } else {
+  } else if (inView) {
+    startedOnce = true;
     runAgentStory("claude");
+  } else {
+    mount.classList.add("stage-paused");
+    setAurasPaused(true);
+    setStaticShowcase();
   }
 }

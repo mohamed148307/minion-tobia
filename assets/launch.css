@@ -6,6 +6,9 @@
 }
 .stage-wrap .splash{margin:0;width:100%;padding:12px 8px 10px}
 .stage-wrap .s72{font-size:clamp(26px,5vw,42px)}
+.launch-hero .splash{background:none;border:0;border-radius:0;margin:0;padding:0;width:min(1180px,100%);flex:1;justify-content:center}
+.launch-hero .splash svg.pr{width:min(100%,920px);max-height:clamp(185px,39svh,390px);height:auto}
+.launch-hero .splash .s72{font-size:clamp(32px,5vw,56px);margin-top:-6px}
 /* Opening scene: Minztobia round 7, approved 13 Nov 2026.
    The speeder motion is redrawn after the Uiverse.io loader by anand_4957.
    The beam glow keyframe is named prglow so it does not replace the desk scene's glow. */
